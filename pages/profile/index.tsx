@@ -6,7 +6,6 @@ import {
   Avatar,
   SelectChangeEvent,
 } from '@mui/material';
-import { liff } from "@line/liff";
 import { FormField } from '@/components/common/TextField';
 import { FormButton } from '@/components/common/FormButton';
 import { profilestyles } from '@/styles/profile/profile';
@@ -36,10 +35,6 @@ const ProfileEditor: React.FC<ProfileProps> = ({
     skill,
     intro,
   });
-
-  const handleCancel = () => {
-    liff.closeWindow();
-  };
 
   const handleSave = () => {
     setOpen(false);
@@ -87,9 +82,8 @@ const ProfileEditor: React.FC<ProfileProps> = ({
           value={values.intro}
         />
       </DialogContent>
-      <DialogActions>
-        <FormButton variant={"outlined"} onClick={handleCancel} buttonName={"キャンセル"} />
-        <FormButton variant={"contained"} onClick={handleSave} buttonName={"保存"} />
+      <DialogActions sx={{ justifyContent: 'center' }}>
+        <FormButton variant="contained" onClick={handleSave} size="large" buttonName="保存" />
       </DialogActions>
     </div>
   );
