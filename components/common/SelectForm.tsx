@@ -1,7 +1,7 @@
 import { InputHTMLAttributes } from "react";
 import { Select, MenuItem, InputLabel, FormControl, SelectChangeEvent } from '@mui/material';
 
-import { PREF_OPTIONS } from '@/options/prefecture';
+import { PREF_OPTIONS } from '@/options';
 import { profilestyles } from '@/styles/profile/profile';
 
 type SelectFormProps = {

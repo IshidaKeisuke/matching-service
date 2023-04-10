@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { liff } from "@line/liff";
+import liff from "@line/liff";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
