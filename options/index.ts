@@ -10,6 +10,6 @@ export const PREF_OPTIONS =
 	"福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県"
 ];
 
-export const dayofWeekendArray = [
+export const DayofWeekendArray = [
 	"日", "月", "火", "水", "木", "金", "土"
 ]

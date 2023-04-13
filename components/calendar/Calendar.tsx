@@ -1,8 +1,8 @@
-import * as React from "react";
 import { useState } from "react";
 import {
   Paper,
   Table,
+  TableHead,
   TableBody,
   TableCell,
   TableContainer,
@@ -12,12 +12,13 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  TextField
 } from "@mui/material";
 import { format, eachWeekOfInterval, endOfMonth, startOfMonth } from "date-fns";
-import { DayOfWeek } from "./DayofWeek";
-import { FormButton } from "../common/FormButton";
-import { InputField } from "../common/InputField";
+import { DayofWeekendArray } from "@/options/index";
+import { CustomButton } from "../common/Button";
+import { InputField } from "../common/Input";
+import { Typography } from "../ui/Typography";
+
 export const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -57,7 +58,15 @@ export const Calendar = () => {
       </div>
       <TableContainer component={Paper}>
         <Table>
-          <DayOfWeek />
+          <TableHead>
+            <TableRow>
+              {DayofWeekendArray.map((value, index) => (
+                <TableCell key={index}>
+                  {value}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
           <TableBody>
             {weeks.map((weekStart) => (
               <TableRow key={weekStart.toISOString()}>
@@ -80,20 +89,22 @@ export const Calendar = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <Dialog onClose={handleClose} open={dialogOpen}>
-        <DialogTitle>労働時間の入力</DialogTitle>
-        <DialogContent>
-          <InputField htmlFor="working-hours-start" name="開始時間："/>
-          <TextField
+      <Dialog onClose={handleClose} open={dialogOpen} fullWidth>
+        <DialogTitle align="center">労働時間の入力</DialogTitle>
+    		<DialogContent>
+          <Typography name="開始時間" align="center" gutterBottom/>
+          <InputField
             id="working-hours-start"
+            label=""
             type="time"
             value={workingHours.start}
             onChange={(e) => handleWorkingHoursChange("start", e.target.value)}
             fullWidth
           />
-          <InputField htmlFor="working-hours-start" name="終了時間："/>
-          <TextField
+          <Typography name="終了時間" align="center" gutterBottom/>
+          <InputField
             id="working-hours-end"
+            label=""
             type="time"
             value={workingHours.end}
             onChange={(e) => handleWorkingHoursChange("end", e.target.value)}
@@ -101,10 +112,10 @@ export const Calendar = () => {
           />
         </DialogContent>
         <DialogActions>
-          <FormButton variant="text" onClick={handleClose} size="large" buttonName="閉じる"/>
-          <FormButton variant="contained" onClick={handleSave} size="large" buttonName="保存" />
+          <CustomButton variant="text" onClick={handleClose} size="large" buttonName="閉じる"/>
+          <CustomButton variant="contained" onClick={handleSave} size="large" buttonName="保存" />
         </DialogActions>
-      </Dialog>
+      </Dialog>    
     </>
   );
 };
